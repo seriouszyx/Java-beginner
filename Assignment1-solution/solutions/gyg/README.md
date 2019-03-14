@@ -14,5 +14,5 @@
 + 引用传递，是把对象A的引用传递给另一个对象B，改边B，会导致A也改变，因为A和B是有相同引用的不同对象
 + ![0A2$QZNV`11(~1)O3P3V9HX.png](https://i.loli.net/2019/03/14/5c8a5491f3209.png)
 + 或者修改people1.num
-+ ![)PDB_]B}U8KTJY~0O@KJTGN.png](https://i.loli.net/2019/03/14/5c8a54c6028a5.png)
++ ![)PDB_]B}U8KTJY~0O@KJTGN.png](https://i.loli.net/2019/03/14/5c8a5605b2858.png)
 + [原文](https://blog.csdn.net/Norte_L/article/details/80250057)
