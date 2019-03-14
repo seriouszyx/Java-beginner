@@ -24,26 +24,6 @@ public class RobotFace extends GraphicsProgram {
 	public void run() {
 		setSize(600, 400);
 		// You fill the codes here
-		//face
-		GRect face = new GRect(150, 250);
-		face.setFilled(true);
-		face.setColor(Color.gray);
-		add(face, 225, 75);
-		//leftEye
-		GArc leftEye = new GArc(40, 40, 20, 360);
-		leftEye.setFilled(true);
-		leftEye.setColor(Color.yellow);
-		add(leftEye, 245, 125);
-		//rightEye
-		GArc rightEye = new GArc(40, 40, 20, 360);
-		rightEye.setFilled(true);
-		rightEye.setColor(Color.yellow);
-		add(rightEye, 315, 125);
-		//mouth
-		GRect mouth = new GRect(100, 30);
-		mouth.setFilled(true);
-		mouth.setColor(Color.white);
-		add(mouth, 250, 250);
 	}
 
 }
