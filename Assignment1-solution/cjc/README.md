@@ -13,7 +13,103 @@ answer：
 [参考资料](https://www.cnblogs.com/myitm/archive/2011/05/03/2035942.html)
 
 ### 什么是值传递和引用传递？
-- 首先，基本类型和引用类型的不同之处在于，基本类型变量的值就保存在变量中，而引用类型变量保存的则是实际对象的地址，这种变量就叫做“引用”，引用指向实际对象，实际对象板寸着内容。（我喜欢把引用变量看成遥控器，他链接着对象，能对对象进行操作）
-- 赋值运算符。对于基本类型，赋值运算符会直接改变变量的值，原来的值被覆盖掉。但是对于引用类型，赋值运算符会改变引用中所保存的地址，原来的地址被覆盖掉（也就是说现在这个遥控器已经换可操作的电视机了，原来的电视机没有遥控器可以控制了），没有任何引用的对象就会变成垃圾，等待死亡吧。
-- 而Java中方法参数传递方式都是值传递。参数是基本类型，传递的就是基本类型的字面量值的拷贝。如果参数是引用类型，传递的是该参数所引用的对象地址的拷贝。具体实例参见如下网站：
 [参考内容](https://www.zhihu.com/question/31203609/answer/50992895)
+- 值传递：形参是实参的一个拷贝，再方法中对形参的值进行改变并不影响外部实参的值。也就是说，值传递是单向的，参数的值只能再方法中为所欲为，不能传出。
+- 引用传递：形参就是实参的别名，对形参的操作就是对实参的操作。形参上面存放的是实参变量的地址，对形参进行操作，就会通过这个地址找到实参，对实参进行同样的操作。也就是说被调函数对形参的任何操作都会被处理成间接寻址。正因为如此，被调函数对参数做任何操作都会影响主调函数中实参变量。从实参，形参在内存中存放地址的角度说明问题的本质，容易理解：
+```c++
+#include<iostream>
+using namespace std;
+//值传递
+ void change1(int n){
+    cout<<"值传递--函数操作地址"<<&n<<endl;         //显示的是拷贝的地址而不是源地址 
+    n++;
+}
+
+//引用传递
+void change2(int & n){
+    cout<<"引用传递--函数操作地址"<<&n<<endl; 
+    n++;
+}
+ } 
+int main(){
+    int n=10;
+    cout<<"实参的地址"<<&n<<endl;
+    change1(n); 
+    cout<<"after change1() n="<<n<<endl;
+    change2(n);
+    cout<<"after change2() n="<<n<<endl;
+    return true;
+}
+```
+结果为![result](https://i.loli.net/2019/03/16/5c8cdfc1eeab0.png)
+从结果可以看出，采用值传递的时候，函数操作地址并不是实参本身，所以对它进行操作并不能改变实参的值；但是引用传递操作的地址就是实参地址，所以对它的操作影响就自然的加到了对实参的影响上去。
+- 但是在Java中只有值传递，没有引用传递。最容易动摇这个观点的就在——java基本数据类型传递和引用传递这个过程。
+1. 基本类型传递时：看下面的例子：
+```java
+package com.zejian.test;
+
+public class CallByValue {
+	
+    private static int x=10;
+	
+    public static void updateValue(int value){
+        value = 3 * value;
+    }
+	
+    public static void main(String[] args) {
+        System.out.println("调用前x的值："+x);    // 调用前x的值：10
+        updateValue(x);
+        System.out.println("调用后x的值："+x);    // 调用后x的值：10
+    }	
+}
+```
+很显然，在这种情况中，是值传递，value只是x的一个拷贝，value = 3 * value之后，是value变成了30而不是x；
+2. 引用类型的传递过程：
+```java
+package com.zejian.test;
+public class User {
+    private String name;
+    private int age;
+    public User(String name, int age) {
+        this.name=name;
+        this.age=age;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+//执行类如下：
+package com.zejian.test;
+
+public class CallByValue {
+    private static User user=null;
+    public static void updateUser(User student){
+        student.setName("Lishen");
+        student.setAge(18);
+    }
+	
+	
+    public static void main(String[] args) {
+        user = new User("zhangsan",26);
+        System.out.println("调用前user的值："+user.toString());
+        updateUser(user);
+        System.out.println("调用后user的值："+user.toString());
+    }
+}
+```
+调用前user的值：User [name=zhangsan, age=26]
+调用后user的值：User [name=Lishen, age=18]<br/>
+这个结果很容易让人以为这是按引用调用（引用传递）的。其实不然，让我们来分析一下这个过程，user这个对象引用指向User对象，而`updateUser(user)`操作之后，引用参数student拷贝了user的值，此时student这个引用也指向User对象。如果大哥比方的话，相当于，User对象是个电视机，而uer对象引用就是这个电视机的遥控器，调用 `updateUser(user)` 方法之后，这个遥控器被仿制了而且是高仿的，它也能对电视机为所欲为。所以，在user和student都指向同意个User对象的情况下，谁对它操作都是有用的（当然这个谁都能操作是由范围的，updateUser(user)被调用过之后，student及准备等死吧，它没有机会在对电视机怎么样了）<br/>
+所以上面的就不是按引用传递。因为，student和user都可以对User操作，而不是student找到user然后让user去帮他操作User。
+关于值传递和引用传递的例子在这[戳我](https://www.cnblogs.com/yanlingyin/archive/2011/12/07/2278961.html)<br/>
+其他参考如下[戳我呗](https://blog.csdn.net/javazejian/article/details/51192130)[还有我](https://www.zhihu.com/question/31203609/answer/50992895)
