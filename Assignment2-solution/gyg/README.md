@@ -10,5 +10,5 @@
 ***
 | 基本数据类型 | byte |boolen | short | char | int | long | float  | double |
 | :-----:|:-----: |
-|包装类|Byte|Boolen | Short |Character |integer  |Long ||Float ||Double |
+|包装类|Byte|Boolen | Short |Character |integer  |Long |Float |Double |
 
