@@ -22,7 +22,7 @@
 就是把Long，Integer，Double，Float 等将基本数据类型的首字母大写的相应的引用类型转化为基本数据类型的动作就叫拆箱。
 + **装箱**
 就是把byte ，int ，short， long ，double，float，boolean，char 这些Java的基本数据类型在定义数据类型时不声明为相对应的引用类型，在编译器的处理下自动转化为引用类型的动作就叫做装箱。
-## 接口和抽象类的区别是什么？
+## [接口和抽象类的区别是什么？](https://blog.csdn.net/My_name_is_ZwZ/article/details/80001121)
 1. 抽象类是用abstract修饰的类叫做抽象类。
    + 有抽象方法的类一定是抽象类，但是抽象类中不一定有抽象方法
    + 抽象类不能有对象，（不能用new此关键字来创建抽象类的对象）
