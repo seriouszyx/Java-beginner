@@ -1,11 +1,4 @@
-
-|基本数据类型|包装类|
-|:-:-|-:-|
-|byte|Byte|
-|boolen|Boolen|
-|short|Short|
-|char|Character|
-|int|integer|
-|long|Long|
-|float|Float|
-|double|Double|
+| 左对齐标题 | 右对齐标题 | 居中对齐标题 |
+| :------| ------: | :------: |
+| 短文本 | 中等文本 | 稍微长一点的文本 |
+| 稍微长一点的文本 | 短文本 | 中等文本 |
