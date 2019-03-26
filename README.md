@@ -1,8 +1,8 @@
 # Java-beginner
 
 
-- [seriouszyx](https://github.com/seriouszyx)
-- [Chenjiang-circle](http://github.com/Chenjiang-circle)
+- [seriouszyx](https://github.com/seriouszyx)	
+- [Chenjiang-circle](http://github.com/Chenjiang-circle)	
 - [GYGSTAR](https://github.com/GYGSTAR)
--	this is for self which can be changed properly
--	this is for self which can be changed properly
+- [Zheyuan Li](https://github.com/InfinityOasis)
+- [Frandaaaa](https://github.com/Frandaaaa)
