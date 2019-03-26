@@ -10,11 +10,11 @@
 import acm.graphics.*;
 import acm.program.*;
 import acm.util.*;
-import java.util.Random;
 import java.applet.*;
 import java.awt.*;
 import java.awt.event.*;
 
+@SuppressWarnings("serial")
 public class Breakout extends GraphicsProgram {
 
 	// Dimensions of the canvas, in pixels
@@ -66,7 +66,7 @@ public class Breakout extends GraphicsProgram {
 
 	// Number of turns 
 	public static final int NTURNS = 3;
-	//ÉùÃ÷Ìí¼Ó×©¿éµÄ·½·¨
+	//å£°æ˜æ·»åŠ ç –å—çš„æ–¹æ³•
 	private GRect[] bricks = new GRect[100];
 	public void Bricks (int n, double x, double y, int cr) {
 		bricks[n] = new GRect(BRICK_WIDTH, BRICK_HEIGHT);
@@ -79,13 +79,13 @@ public class Breakout extends GraphicsProgram {
 	private GObject LEFT,RIGHT,BOTTOM,TOP;
 	private GOval BAll;
 	private GRect paddle,bricksName;
-	private double XCenter,vx,vy,paddleX;
+	private double XCenter,vx,vy,paddleX,dx,temp;
 	private int num = 0;
 	private RandomGenerator rgen = RandomGenerator.getInstance();
 	private GLabel label = new GLabel("");
 	public void run() {
 		setSize(420, 550);
-		//ÏÔÊ¾´òËéµÄ·½¿é¸öÊı
+		//æ˜¾ç¤ºæ‰“ç¢çš„æ–¹å—ä¸ªæ•°
 		label.setFont("Courier-24");
 		label.setColor(Color.BLUE);
 		label.setLabel("0");
@@ -98,7 +98,7 @@ public class Breakout extends GraphicsProgram {
 		setCanvasSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 		
 		/* You fill this in, along with any subsidiary methods */
-		//ÉèÖÃ×©¿é
+		//è®¾ç½®ç –å—
 		XCenter = getWidth()/2;
 		for(int i = 1; i <= 10; i ++) {
 			for(int j = 0; j < 5; j++) {
@@ -108,13 +108,13 @@ public class Breakout extends GraphicsProgram {
 				Bricks(((i-1)*10+k+5),XCenter+(BRICK_SEP/2 +BRICK_SEP*k+BRICK_WIDTH*k), (BRICK_Y_OFFSET+BRICK_HEIGHT*i+BRICK_SEP*(i-1)), (i-1)/2);
 			}
 		}
-		//ÉèÖÃµ²°å
+		//è®¾ç½®æŒ¡æ¿
 		paddle = new GRect(XCenter-BALL_RADIUS, getHeight()/2-BALL_RADIUS, PADDLE_WIDTH, PADDLE_HEIGHT);
 		paddle.setFilled(true);
 		paddle.setColor(Color.BLACK);
 		add(paddle, XCenter-PADDLE_WIDTH/2 ,getHeight()-PADDLE_Y_OFFSET);
 		paddle.addMouseMotionListener(this);
-		//ÉèÖÃÇò
+		//è®¾ç½®çƒ
 		BAll = new GOval(BALL_RADIUS, BALL_RADIUS);
 		BAll.setFilled(true);
 		BAll.setColor(Color.PINK);
@@ -123,6 +123,7 @@ public class Breakout extends GraphicsProgram {
 	}
 	public void active() {
 		vx=rgen.nextDouble(VELOCITY_X_MIN , VELOCITY_X_MAX);
+		temp = vx;
 		if (rgen.nextBoolean(0.5)) {
 			vx = -vx;
 		}
@@ -141,7 +142,7 @@ public class Breakout extends GraphicsProgram {
 		    if(BAllY <= 0) {
 		    	vy=-vy;
 		    }
-		    if(BAllY >= getHeight()-PADDLE_Y_OFFSET) {
+		    if(BAllY >= getHeight()-PADDLE_Y_OFFSET-PADDLE_HEIGHT) {
 		    	System.out.println("GAME OVER!");
 		    	break;
 		    }
@@ -177,9 +178,10 @@ public class Breakout extends GraphicsProgram {
 		if(paddleX >= CANVAS_WIDTH-PADDLE_WIDTH) {
 			paddleX = CANVAS_WIDTH-PADDLE_WIDTH;
 		}
+		dx = (paddleX-paddle.getX())/2;
 		paddle.move(paddleX-paddle.getX(), 0);
 	}
-	//ÅĞ¶Ï·½¿éÑÕÉ«ÒÔ¼°ÊÇ·ñÎªµ²°å,ÄÑ¶ÈÉı¼¶
+	//åˆ¤æ–­æ–¹å—é¢œè‰²ä»¥åŠæ˜¯å¦ä¸ºæŒ¡æ¿,éš¾åº¦å‡çº§
 	public Boolean judgeBricks(GObject brick) {
 		AudioClip bounceClip = MediaTools.loadAudioClip("bounce.au");
 		int colornum = 0;
@@ -189,6 +191,9 @@ public class Breakout extends GraphicsProgram {
 				bounceClip.play();
 				++num;
 				label.setLabel(" "+num+" ");
+				if(vx > temp) {
+					vx = temp+(vx-temp)/2;
+				}
 			} else if(brick.getWidth() == BRICK_WIDTH && brick.getColor() != Color.CYAN) {
 				for(int i = 0;i <color.length; i++) {
 					if(brick.getColor() == color[i]) {
@@ -197,6 +202,8 @@ public class Breakout extends GraphicsProgram {
 				}
 				brick.setColor(color[colornum+1]);
 				bounceClip.play();
+			} else if(brick.getWidth() == PADDLE_WIDTH) {
+				vx = vx+dx;
 			}
 		}catch(Exception ex) {};
 		if(num == 100) {
