@@ -42,9 +42,10 @@ public void testAutoBox2() {
      System.out.println(c == d);
 }
 (```)
+
 +  第1段代码，基础类型a与包装类b进行==比较，这时b会拆箱，直接比较值，所以会打印true
 +  第2段代码，二个包装类型，都被赋值了100，所以根据我们之前的解析，这时会进行装箱，调用Integer的valueOf方法，生成2个Integer对象，引用类型==比较，直接比较对象指针，这里我们先给出结论，最后会分析原因，打印 true
-   + 跟上面第2段代码类似，只不过赋值变成了200，直接说结论，打印 false
++ 跟上面第2段代码类似，只不过赋值变成了200，直接说结论，打印 false
 
 (```)
  public static Integer valueOf(int i) {
@@ -54,7 +55,7 @@ public void testAutoBox2() {
 }
 (```)
 
-    + IntegerCache的范围是-128到128,200超出了IntegerCache所以返回return new Integer(i)，所以两者不相等
+ + IntegerCache的范围是-128到128,200超出了IntegerCache所以返回return new Integer(i)，所以两者不相等
 ## [接口和抽象类的区别是什么？](https://blog.csdn.net/My_name_is_ZwZ/article/details/80001121)
 1. 抽象类是用abstract修饰的类叫做抽象类。
    + 有抽象方法的类一定是抽象类，但是抽象类中不一定有抽象方法
