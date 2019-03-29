@@ -4,8 +4,6 @@
  * Checks whether a series of numbers are prime
  */
 
-import java.util.Scanner;
-
 import acm.program.*;
 
 public class PrimeChecker extends ConsoleProgram {
@@ -42,28 +40,14 @@ public class PrimeChecker extends ConsoleProgram {
 	 * @return true if n is prime and false otherwise
 	 */
 	public boolean isPrime(int n) {
-
-		double square = Math.sqrt(n);//判断是否未为质数，只需看这个数开方之后的数之前的数。如果在开方数之前的数都不能整除，后面的就不用看了。
-
-		int remainder;
-		int i;
-		for(i = 2; i < square; i++) {
-			remainder = n % i;
-			if(remainder == 0) {
+		int i=2;
+		int r;
+		for(i=2;i<Math.pow(n, 0.5);i++) {
+			if(n%i==0)
 				break;
-			}
 		}
-		if(i > square) { //当循环提前结束的时候，就说明不是质数。否则就是质数。
-			return true;
-		}else {
-			return false;
-		}
-		
+		return true; // this is only here so the program compiles
 	}
 
-	public static void main(String[] args) {
-		PrimeChecker primerChecker = new PrimeChecker();
-		primerChecker.run();
-	}
 
 }
