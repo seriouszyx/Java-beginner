@@ -52,6 +52,10 @@ public class Hangman extends ConsoleProgram {
 	 *                    Methods                              *
 	 ***********************************************************/
 	
+	public void init() {
+		add(canvas);
+	}
+	
 	public void run() {
 		setSize(800, 500);
 		// shall we?
