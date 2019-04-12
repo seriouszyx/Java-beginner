@@ -33,7 +33,6 @@ public class MouseReporter extends GraphicsProgram {
 			label.setLabel(0 + "," + 0);
 			
 			// add the label to the screen!
-			add(label, INDENT, getHeight()/2);
 			
 			addMouseListeners();
 		}
@@ -47,6 +46,7 @@ public class MouseReporter extends GraphicsProgram {
 			} else {
 				label.setColor(Color.BLUE);
 			}
+			add(label, e.getX(), getHeight()/2);
 		}
 		
 		private GObject gobj;
