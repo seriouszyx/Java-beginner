@@ -1,4 +1,4 @@
-# Java-beginner
+# 实验室18级 Java 组
 
 ## Members
 
