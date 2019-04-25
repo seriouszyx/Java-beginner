@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path=""/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="acm.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/fluent-hc-4.5.8.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/httpclient-4.5.8.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/httpclient-cache-4.5.8.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/httpclient-osgi-4.5.8.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/httpclient-win-4.5.8.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/httpcore-4.4.11.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/httpmime-4.5.8.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/jna-4.5.2.jar"/>
+	<classpathentry kind="lib" path="G:/github库/Java-beginner/Assignment3-solution/cjc/Assignment3-codes/jna-platform-4.5.2.jar"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
