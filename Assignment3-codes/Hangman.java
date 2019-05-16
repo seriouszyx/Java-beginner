@@ -81,5 +81,4 @@ public class Hangman extends ConsoleProgram {
 		if(index == 9) return "ZIRCON";
 		throw new ErrorException("getWord: Illegal index");
 	}
-
 }

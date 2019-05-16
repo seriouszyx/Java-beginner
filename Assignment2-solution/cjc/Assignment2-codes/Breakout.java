@@ -184,7 +184,7 @@ public class Breakout extends GraphicsProgram {
 				println("Game Over!!");
 				break;
 			}
-			GPoint left = new GPoint(leftUpX, leftUpY + BALL_RADIUS);
+		GPoint left = new GPoint(leftUpX, leftUpY + BALL_RADIUS);
 			GObject gobj_left = getElementAt(left);
 			GPoint right = new GPoint(leftUpX + BALL_RADIUS * 2, leftUpY + BALL_RADIUS);
 			GObject gobj_right = getElementAt(right);
@@ -193,7 +193,7 @@ public class Breakout extends GraphicsProgram {
 			GPoint down = new GPoint(leftUpX + BALL_RADIUS, leftUpY + BALL_RADIUS * 2);
 			GObject gobj_down = getElementAt(down);
 			GPoint leftUp = new GPoint(leftUpX, leftUpY);
-			
+
 			if(ball.getY() <= 0) {
 				vy = -vy;
 			}
